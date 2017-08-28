@@ -1,0 +1,366 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.agileapex</groupId>
+	<artifactId>agileapex</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.2</version>
+
+	<properties>
+		<applicationContextName>apex</applicationContextName>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<finalName>apex</finalName>
+
+		<!-- First include files needs to be filtered and then exclude everything 
+			else. -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>internal.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<debug>true</debug>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+					<excludes>
+						<!-- UI Tests are not (yet) part of the build life-cycle. -->
+						<exclude>**/ui_test/**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.1.15.v20140411</version>
+				<configuration>
+					<stopPort>9966</stopPort>
+					<stopKey>jetty-stop</stopKey>
+					<reload>manual</reload>
+					<scanIntervalSeconds>0</scanIntervalSeconds>
+					<webAppConfig>
+						<contextPath>/${applicationContextName}</contextPath>
+					</webAppConfig>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-resources-plugin
+										</artifactId>
+										<versionRange>
+											[2.6,)
+										</versionRange>
+										<goals>
+											<goal>testResources</goal>
+											<goal>resources</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.vaadin</groupId>
+										<artifactId>
+											vaadin-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0.2,)
+										</versionRange>
+										<goals>
+											<goal>
+												update-widgetset
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-testbench</artifactId>
+			<version>3.1.3</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin</artifactId>
+			<version>6.8.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vaadin.addon</groupId>
+			<artifactId>vaadin-charts-vaadin6</artifactId>
+			<version>1.1.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.18</version>
+		</dependency>
+
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901.jdbc4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>3.2.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.2.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>2.7.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.jmockit</groupId>
+			<artifactId>jmockit</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<!-- Remove src/main/webapp/VAADIN/widgetsets directory or whole src/main/webapp/VAADIN/ 
+				directory to trigger recompile. NOTE: Do not remove the resourcer/VAADIN 
+				folder! -->
+			<id>widgets</id>
+			<activation>
+				<file>
+					<missing>${basedir}/src/main/webapp/VAADIN/widgetsets/</missing>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+
+					<!--This plugin's configuration is used to store Eclipse m2e settings 
+						only. It has no influence on the Maven build itself. When updating to Vaadin 
+						7, remove this. -->
+					<plugin>
+						<groupId>org.eclipse.m2e</groupId>
+						<artifactId>lifecycle-mapping</artifactId>
+						<configuration>
+							<lifecycleMappingMetadata>
+								<pluginExecutions>
+									<pluginExecution>
+										<pluginExecutionFilter>
+											<groupId>com.vaadin</groupId>
+											<artifactId>
+												vaadin-maven-plugin
+											</artifactId>
+											<versionRange>
+												[1.0.2,)
+											</versionRange>
+											<goals>
+												<goal>update-widgetset</goal>
+											</goals>
+										</pluginExecutionFilter>
+										<action>
+											<ignore></ignore>
+										</action>
+									</pluginExecution>
+									<pluginExecution>
+										<pluginExecutionFilter>
+											<groupId>org.codehaus.mojo</groupId>
+											<artifactId>
+												gwt-maven-plugin
+											</artifactId>
+											<versionRange>
+												[${gwt.plugin.version},)
+											</versionRange>
+											<goals>
+												<goal>resources</goal>
+												<goal>compile</goal>
+											</goals>
+										</pluginExecutionFilter>
+										<action>
+											<ignore></ignore>
+										</action>
+									</pluginExecution>
+								</pluginExecutions>
+							</lifecycleMappingMetadata>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>com.vaadin</groupId>
+						<artifactId>vaadin-maven-plugin</artifactId>
+						<version>1.0.2</version>
+						<configuration>
+							<!-- if you don't specify any modules, the plugin will find them -->
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>update-widgetset</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<version>2.5.1</version>
+						<configuration>
+							<webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets/</webappDirectory>
+							<extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
+							<soyc>false</soyc>
+							<force>true</force>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

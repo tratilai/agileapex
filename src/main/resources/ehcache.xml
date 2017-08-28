@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="false"
+	monitoring="autodetect" dynamicConfig="false">
+
+	<defaultCache maxEntriesLocalHeap="1000" eternal="false"
+		timeToIdleSeconds="1800" timeToLiveSeconds="0" diskSpoolBufferSizeMB="0"
+		overflowToDisk="false" maxEntriesLocalDisk="0"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" copyOnWrite="true">
+		<persistence strategy="none" />
+	</defaultCache>
+
+	<cache name="userCache" maxEntriesLocalHeap="1000" eternal="false"
+		timeToIdleSeconds="1800" timeToLiveSeconds="0" diskSpoolBufferSizeMB="0"
+		overflowToDisk="false" maxEntriesLocalDisk="0"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" copyOnWrite="true">
+		<persistence strategy="none" />
+	</cache>
+
+	<cache name="taskCache" maxEntriesLocalHeap="1000" eternal="false"
+		timeToIdleSeconds="1800" timeToLiveSeconds="0" diskSpoolBufferSizeMB="0"
+		overflowToDisk="false" maxEntriesLocalDisk="0"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" copyOnWrite="true">
+		<persistence strategy="none" />
+	</cache>
+
+	<cache name="productBacklogCache" maxEntriesLocalHeap="1000"
+		eternal="false" timeToIdleSeconds="1800" timeToLiveSeconds="0"
+		diskSpoolBufferSizeMB="0" overflowToDisk="false" maxEntriesLocalDisk="0"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" copyOnWrite="true">
+		<persistence strategy="none" />
+	</cache>
+
+	<cache name="effortCache" maxEntriesLocalHeap="1000" eternal="false"
+		timeToIdleSeconds="1800" timeToLiveSeconds="0" diskSpoolBufferSizeMB="0"
+		overflowToDisk="false" maxEntriesLocalDisk="0"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" copyOnWrite="true">
+		<persistence strategy="none" />
+	</cache>
+
+	<cache name="releaseCache" maxEntriesLocalHeap="1000" eternal="false"
+		timeToIdleSeconds="1800" timeToLiveSeconds="0" diskSpoolBufferSizeMB="0"
+		overflowToDisk="false" maxEntriesLocalDisk="0"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" copyOnWrite="true">
+		<persistence strategy="none" />
+	</cache>
+
+	<cache name="sprintCache" maxEntriesLocalHeap="1000" eternal="false"
+		timeToIdleSeconds="1800" timeToLiveSeconds="0" diskSpoolBufferSizeMB="0"
+		overflowToDisk="false" maxEntriesLocalDisk="0"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" copyOnWrite="true">
+		<persistence strategy="none" />
+	</cache>
+
+	<cache name="projectCache" maxEntriesLocalHeap="1000" eternal="false"
+		timeToIdleSeconds="1800" timeToLiveSeconds="0" diskSpoolBufferSizeMB="0"
+		overflowToDisk="false" maxEntriesLocalDisk="0"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" copyOnWrite="true">
+		<persistence strategy="none" />
+	</cache>
+
+</ehcache>

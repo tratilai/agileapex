@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="agileapex" version="2.5">
+
+	<display-name>Agile Apex</display-name>
+	<description>Agile Apex Web Application</description>
+
+	<context-param>
+		<description>Flag for Vaadin's production mode</description>
+		<param-name>productionMode</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>AgileApexServlet</servlet-name>
+		<servlet-class>com.agileapex.AgileApexServlet</servlet-class>
+		<init-param>
+			<description>Vaadin application bean to start</description>
+			<param-name>application</param-name>
+			<param-value>com.agileapex.AgileApexApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>widgetset</param-name>
+			<param-value>com.agileapex.AgileApexWidgetSet</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AgileApexServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+</web-app>

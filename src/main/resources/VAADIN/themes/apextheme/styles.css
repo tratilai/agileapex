@@ -1,0 +1,109 @@
+@import "../reindeer/styles.css";
+
+/* 
+	Styles for special action menu 
+*/
+.actionmenu  {
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #fafafa;
+    background-image: linear-gradient(to bottom, #fafafa 2%, #efefef 98%);
+    border-image: none;
+    border-color: #c5c5c5 #c5c5c5 #bcbcbc;
+    border-left: 1px solid #c5c5c5;
+    border-radius: 4px;
+    border-right: 1px solid #c5c5c5;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 white inset, 0 -1px 0 #e7e7e7 inset, 0 2px 3px rgba(0, 0, 0, 0.05);
+    cursor: default;
+}
+
+.actionmenu .v-menubar-menuitem:hover {
+    color: #333333;
+}
+
+/* 
+	Specific background colors for header components 
+*/
+.v-header-style {
+	background: #8ECAF5;
+}
+.v-location-header-style {
+	background: linear-gradient(#8ecaf5, #aeeaff) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+/*
+	Header menu bar styles
+*/
+.v-tabsheet-tabs-minimal .v-tabsheet-tabitem, .white .v-tabsheet-tabs-minimal .v-tabsheet-tabitem {
+    background: none repeat scroll 0 0 #AEDAFF;
+    border-image: none;
+    border-radius: 3px 3px 3px 3px;
+	border-color: #BFBFBF;
+    border-style: none solid;
+    border-width: 1px;
+    border-collapse: collapse;
+    color: inherit;
+}
+
+.v-tabsheet-tabs-minimal .v-tabsheet-tabitem-selected, .white .v-tabsheet-tabs-minimal .v-tabsheet-tabitem-selected {
+	background: none repeat scroll 0 0 #BEFAFF;
+    border-image: none;
+    border-radius: 3px 3px 3px 3px;
+	border-color: #BFBFBF;
+    border-style: none solid;
+    border-width: 1px;
+    border-collapse: collapse;
+    color: inherit;
+}
+
+.v-tabsheet-tabs {
+    font-weight: bold;
+}
+
+/* 
+	Set GridLayout padding to 18 pixel, which is same than margin in other layouts' padding values 
+*/
+.v-gridlayout-margin-right {
+	padding-right: 18px;
+}
+
+.v-gridlayout-margin-left {
+	padding-left: 18px;
+}
+
+.v-gridlayout-margin-bottom {
+	padding-bottom: 18px;
+}
+
+.v-gridlayout-margin-top {
+	padding-top: 18px;
+}
+
+/*
+	Login page custom styles
+*/
+.v-app-loginpage .v-logintitle {
+	text-align: center;
+}
+
+.v-app-loginpage .v-logintable {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 12px;
+}
+
+.v-app-loginpage .v-button {
+	float: right;
+	margin-top: 6px;
+}
+
+/*
+	Set visible border to textarea and textfield components when needed.
+*/
+.v-textarea.v-readonly.v-textarea-add-borders, .v-textfield.v-readonly.v-textfield-add-borders {
+    border: 1px solid #BBBBBB;	
+}
